@@ -24,6 +24,15 @@ import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.rdf.model.Statement;
 import org.apache.jena.rdf.model.StmtIterator;
 import org.apache.jena.util.FileManager;
+import org.apache.jena.query.Query;
+import org.apache.jena.query.QueryExecution;
+import org.apache.jena.query.QueryExecutionFactory;
+import org.apache.jena.query.QueryFactory;
+import org.apache.jena.query.QuerySolution;
+import org.apache.jena.query.ResultSet;
+import org.apache.jena.rdf.model.Literal;
+import org.apache.jena.rdf.model.Model;
+import org.apache.jena.util.FileManager;
 
 public class ExampleAPI_01 {
 
@@ -31,14 +40,39 @@ public class ExampleAPI_01 {
         FileManager.get().addLocatorClassLoader(ExampleAPI_01.class.getClassLoader());
         Model model = FileManager.get().loadModel("data/data.ttl", null, "TURTLE");
 
+        String queryString = "PREFIX example: <http://example.org/>" +
+            "PREFIX foaf: <http://xmlns.com/foaf/0.1/>" +
+            "SELECT * WHERE {" +
+            "?person foaf:name ?x ." + "}";
+        Query query = QueryFactory.create(queryString);
+        QueryExecution qExec = QueryExecutionFactory.create(query,model);
+        try {
+            System.out.println("Testing queries.");
+            ResultSet results = qExec.execSelect();
+            while (results.hasNext()) {
+            QuerySolution soln = results.nextSolution();
+            Literal name = soln.getLiteral("x");
+            System.out.println("name = " + name);
+            }
+        } finally {
+            qExec.close();
+        }
+
+
         StmtIterator iter = model.listStatements();
         try {
             while ( iter.hasNext() ) {
                 Statement stmt = iter.next();
                 
+                System.out.println(stmt.toString());
+                
                 Resource s = stmt.getSubject();
                 Resource p = stmt.getPredicate();
                 RDFNode o = stmt.getObject();
+                
+                System.out.println(s.toString());
+                System.out.println(p.toString());
+                System.out.println(o.toString());
                 
                 if ( s.isURIResource() ) {
                     System.out.print("URI");

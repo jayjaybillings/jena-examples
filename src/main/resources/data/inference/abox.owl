@@ -22,7 +22,8 @@
    	
     <A rdf:ID="ia">
     </A>
-    
-    <B rdf:about="#ia" />
+
+<!--    <B rdf:about="#ia" />    -->
+    <B rdf:about="bob" />
     
 </rdf:RDF>

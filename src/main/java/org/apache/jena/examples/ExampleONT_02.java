@@ -34,9 +34,9 @@ public class ExampleONT_02 {
     public static void main(String[] args) {
         FileManager.get().addLocatorClassLoader(ExampleONT_02.class.getClassLoader());
         
-        Model tbox = FileManager.get().loadModel("data/inference/tbox.owl", null, "RDF/XML"); // http://en.wikipedia.org/wiki/Tbox
+        Model tbox = FileManager.get().loadModel("data/inference/ice-owl.rdf", null, "RDF/XML"); // http://en.wikipedia.org/wiki/Tbox
         Reasoner reasoner = ReasonerRegistry.getOWLReasoner().bindSchema(tbox.getGraph());
-        Model abox = FileManager.get().loadModel("data/inference/abox.owl", null, "RDF/XML"); // http://en.wikipedia.org/wiki/Abox
+        Model abox = FileManager.get().loadModel("data/inference/test.rdf", null, "RDF/XML"); // http://en.wikipedia.org/wiki/Abox
 
         InfModel inf = ModelFactory.createInfModel(reasoner, abox);
 
