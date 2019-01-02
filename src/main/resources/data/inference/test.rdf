@@ -7,6 +7,9 @@
 
 <test:Object rdf:about="https://www.eclipse.org/ice#Identifiable">
     <ice:name>Kitten</ice:name>
+    <ice:desc>Untameable ball of cuteness</ice:desc>
+    <ice:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#long">42</ice:identifier>
+    <ice:context>Enduring cuteness</ice:context>
 </test:Object>
 
 <!-- <rdf:Description
