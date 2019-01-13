@@ -5,12 +5,12 @@
         xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
         xmlns:test="http://www.example.org/test#">
 
-<test:Object rdf:about="https://www.eclipse.org/ice#Identifiable">
+<ice:Identifiable rdf:about="https://www.example.org/testObject">
     <ice:name>Kitten</ice:name>
     <ice:desc>Untameable ball of cuteness</ice:desc>
     <ice:identifier rdf:datatype="http://www.w3.org/2001/XMLSchema#long">42</ice:identifier>
     <ice:context>Enduring cuteness</ice:context>
-</test:Object>
+</ice:Identifiable>
 
 <!-- <rdf:Description
 rdf:about="https://www.eclipse.org/ice/test1">
